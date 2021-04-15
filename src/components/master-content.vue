@@ -8,6 +8,10 @@
        <div class="detail-section">
         <EventDetail />
       </div>
+       <div class="comments-section">
+         <h5 class="comment-title">Commentaires</h5>
+        <CommentList />
+      </div>
     </div>
   </div>
 </template>
@@ -16,9 +20,10 @@
 
 import EventList from './event-list'
 import EventDetail from './event-detail'
+import CommentList from './comment-list'
 
 export default {
-  components: {EventList, EventDetail},
+  components: {EventList, EventDetail, CommentList},
   name: 'MasterContent',
   data () {
     return {
