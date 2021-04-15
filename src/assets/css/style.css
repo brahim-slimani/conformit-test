@@ -1,0 +1,43 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+/***************************** EVENT LIST SECTION ******************************/
+
+.event-list-container {
+  margin: 10px 20px;
+  background-color: rgb(230, 230, 230);
+  padding: 10px 0;
+  height: 120vh;
+  overflow: auto;
+  border: 1px solid black;
+}
+
+.events-section {
+  width: 25%;
+}
+
+.event-list-container .event-item {
+  cursor: pointer;
+}
+
+.event-list-container .event-item:hover {
+  border: 2px solid rgb(157, 213, 196);
+}
+
+/* CUSTOM SCROLLBAR STYLE */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(129, 129, 129);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
