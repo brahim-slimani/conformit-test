@@ -41,3 +41,42 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.content-body {
+  display: flex;
+}
+
+/***************************** EVENT DETAIL SECTION ******************************/
+
+.event-detail-container {
+  text-align: initial;
+  margin: 25px;
+}
+
+.detail-section {
+  width: 40%;
+}
+
+.event-detail-container .label {
+  font-weight: bold;
+}
+
+.event-detail-container .item-detail {
+  margin: 25px 0;
+  width: 70%;
+}
+
+.event-detail-container .custom-input {
+  width: 100%;
+}
+
+.event-detail-container .custom-input-area {
+  width: 120%;
+}
+
+.event-detail-container .witness-container{
+  width: 120%;
+  min-height: 100px;
+  border: 1px solid black;
+  padding: 10px;
+}
