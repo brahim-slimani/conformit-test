@@ -1,35 +1,22 @@
 <template>
   <div class="event-list-container">
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
-     <event-item/>
+     <div v-for="item in events" :key="item.id">
+       <EventItem v-bind:eventObject="item" />
+     </div>
   </div>
 </template>
 
 <script>
 
-import eventItem from './event-item.vue'
+import dataServiceWorker from '../service/data-service-worker'
+import EventItem from './event-item.vue'
 
 export default {
-  components: { eventItem },
+  components: { EventItem },
   name: 'EventList',
   data () {
     return {
+      events: dataServiceWorker.getEvents
     }
   },
   methods: {

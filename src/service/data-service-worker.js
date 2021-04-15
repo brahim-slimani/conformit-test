@@ -4,8 +4,9 @@ import {comments, employees, events, getEvent, GetEventComments, } from '../../d
 class DataServiceWorker {
     
     // GET COMMENTS
-    getComments = () => {
-        return comments;
-    }
-    
+    getComments =  comments;
+
+    // GET EVENTS
+    getEvents = events;
+
 } export default new DataServiceWorker()

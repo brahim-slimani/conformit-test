@@ -1,20 +1,26 @@
 <template>
-    <div class="card m-3 event-item">
-        <div class="card-body shadow">
-            Accident avec Adelle
-        </div>
-     </div>
+  <div class="card m-3 event-item" v-on:click="onEventClick(eventObject)">
+    <div class="card-body shadow">
+      {{ this.eventObject.title }}
+    </div>
+  </div>
 </template>
 
 <script>
 
 export default {
   name: 'EventItem',
-  data () {
+  props: {
+    eventObject: Object
+  },
+  data: function () {
     return {
     }
   },
   methods: {
+    onEventClick: (target) => {
+      alert(target.id)
+    }
   }
 }
 

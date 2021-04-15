@@ -15,7 +15,7 @@ export default {
   name: 'CommentList',
   data () {
     return {
-      comments: dataServiceWorker.getComments()
+      comments: dataServiceWorker.getComments
     }
   },
   methods: {
