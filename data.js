@@ -1,3 +1,4 @@
+/* eslint-disable */
 const comments = [
     {creationDate: '2016-04-22T06:23:00Z', author: 'Jean Valjean', content: "Océane est arrivée il y a seulement 3 mois"},
     {creationDate: '2007-03-20T07:34:00Z', author: 'Océane Quessy', content: "Je n'étais pas formé à ca"},
@@ -139,3 +140,5 @@ export function GetEventComments(index) {
         return []
     }
 }
+
+export {comments, events, employees}

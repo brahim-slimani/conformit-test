@@ -8,11 +8,11 @@
       <div class="d-flex">
         <img class="avatar" src="../assets/img/person-icon.png" />
         <div class="content">
-          <strong>Jean Valjean</strong>
-          <p>Océane est arrivée il y a seulement 3 mois</p>
+          <strong>{{ comment.author }}</strong>
+          <p>{{ comment.content }}</p>
         </div>
       </div>
-      <small class="footer"> 10 Janvier 2017 </small>
+      <small class="footer"> {{ new Date(comment.creationDate).toLocaleString() }} </small>
     </div>
   </div>
 </template>
@@ -26,6 +26,9 @@ export default {
     }
   },
   methods: {
+  },
+  props: {
+    comment: Object
   }
 }
 </script>
