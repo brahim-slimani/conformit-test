@@ -3,10 +3,10 @@
     <div class="text-left m-2"><h2>Mes évènements</h2></div>
     <div class="content-body">
       <div class="events-section">
-        <EventList />
+        <EventList @callback="handleEvent" />
       </div>
        <div class="detail-section">
-        <EventDetail />
+        <EventDetail v-bind:eventDetail="this.eventDetail" />
       </div>
        <div class="comments-section">
          <h5 class="comment-title">Commentaires</h5>
@@ -27,9 +27,13 @@ export default {
   name: 'MasterContent',
   data () {
     return {
+      eventDetail: null
     }
   },
   methods: {
+    handleEvent (target) {
+      this.eventDetail = target
+    }
   }
 }
 </script>

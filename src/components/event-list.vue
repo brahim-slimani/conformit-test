@@ -1,7 +1,7 @@
 <template>
   <div class="event-list-container">
      <div v-for="item in events" :key="item.id">
-       <EventItem v-bind:eventObject="item" />
+       <EventItem v-bind:eventObject="item" @onEventClick="callback" />
      </div>
   </div>
 </template>
@@ -20,6 +20,9 @@ export default {
     }
   },
   methods: {
+    callback (target) {
+      this.$emit('callback', target)
+    }
   }
 }
 

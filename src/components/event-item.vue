@@ -1,5 +1,5 @@
 <template>
-  <div class="card m-3 event-item" v-on:click="onEventClick(eventObject)">
+  <div class="card m-3 event-item" @click="onEventClick(eventObject)">
     <div class="card-body shadow">
       {{ this.eventObject.title }}
     </div>
@@ -18,8 +18,8 @@ export default {
     }
   },
   methods: {
-    onEventClick: (target) => {
-      alert(target.id)
+    onEventClick (target) {
+      this.$emit('onEventClick', target)
     }
   }
 }
