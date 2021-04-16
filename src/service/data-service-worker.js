@@ -24,6 +24,9 @@ class DataServiceWorker {
         return [...new Set(statusList)];
     }
 
+    getEventComments = (index) => {
+        return GetEventComments(index);
+    } 
 
 
 } export default new DataServiceWorker()

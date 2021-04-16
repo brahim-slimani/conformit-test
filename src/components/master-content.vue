@@ -10,7 +10,7 @@
       </div>
        <div class="comments-section">
          <h5 class="comment-title">Commentaires</h5>
-        <CommentList />
+        <CommentList v-bind:eventId="this.eventDetail ? this.eventDetail.id : null" />
       </div>
     </div>
   </div>

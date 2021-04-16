@@ -75,7 +75,7 @@
       </select>
     </div>
     <div class="item-detail">
-      <div class="label" @click="displayEm">Témoins</div>
+      <div class="label">Témoins</div>
       <div class="witness-container"></div>
     </div>
   </div>
@@ -94,9 +94,6 @@ export default {
     }
   },
   methods: {
-    displayEm () {
-      console.table(this.employeesOptions)
-    }
   },
   props: {
     eventDetail: Object

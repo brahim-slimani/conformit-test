@@ -1,6 +1,6 @@
 <template>
   <div class="comment-list-container">
-  <div v-for="item in comments" :key="item.creationDate">
+  <div v-for="item in getEventComments(this.eventId)" :key="item.creationDate">
        <CommentItem v-bind:comment="item" />
   </div>
   </div>
@@ -15,10 +15,15 @@ export default {
   name: 'CommentList',
   data () {
     return {
-      comments: dataServiceWorker.getComments
     }
   },
   methods: {
+    getEventComments (id) {
+      return id ? dataServiceWorker.getEventComments(id) : null
+    }
+  },
+  props: {
+    eventId: Number
   }
 }
 
