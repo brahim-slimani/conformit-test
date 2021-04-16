@@ -1,5 +1,5 @@
 <template>
-  <div class="card m-3 event-item" @click="onEventClick(eventObject)">
+  <div class="card m-3 event-item" @click="onClickEvent(eventObject)">
     <div class="card-body shadow">
       {{ this.eventObject.title }}
     </div>
@@ -18,8 +18,8 @@ export default {
     }
   },
   methods: {
-    onEventClick (target) {
-      this.$emit('onEventClick', target)
+    onClickEvent (selectedEvent) {
+      this.$emit('callbackClickEvent', selectedEvent)
     }
   }
 }

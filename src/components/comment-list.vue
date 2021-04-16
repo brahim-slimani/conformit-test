@@ -1,14 +1,14 @@
 <template>
   <div class="comment-list-container">
-  <div v-for="item in getEventComments(this.eventId)" :key="item.creationDate">
-       <CommentItem v-bind:comment="item" />
+  <div v-for="item in this.comments" :key="item.creationDate">
+       <CommentItem v-bind:comment="item" @callbackDeleteComment="deleteComment"/>
   </div>
   </div>
 </template>
 
 <script>
+
 import CommentItem from './comment-item.vue'
-import dataServiceWorker from '../service/data-service-worker'
 
 export default {
   components: { CommentItem },
@@ -18,12 +18,12 @@ export default {
     }
   },
   methods: {
-    getEventComments (id) {
-      return id ? dataServiceWorker.getEventComments(id) : null
+    deleteComment (comment) {
+      this.$emit('callbackDeleteComment', comment)
     }
   },
   props: {
-    eventId: Number
+    comments: Array
   }
 }
 

@@ -3,17 +3,17 @@
     <div class="text-left m-2"><h2>Mes évènements</h2></div>
     <div class="content-body">
       <div class="events-section">
-        <EventList @callback="handleEvent" />
+        <EventList @callbackSelectEvent="onSelectEventItem" />
       </div>
        <div class="detail-section">
         <EventDetail
           v-bind:eventDetail="this.eventDetail"
-          @callbackChangeEvent="handleChangeEvent"
-          @callbackDeleteWitness="handleDeleteWitness"/>
+          @callbackUpdateEvent="onUpdateEvent"
+          @callbackDeleteWitness="onDeleteWitness"/>
       </div>
        <div class="comments-section">
-         <h5 class="comment-title">Commentaires</h5>
-        <CommentList v-bind:eventId="this.eventDetail ? this.eventDetail.id : null" />
+        <h5 class="comment-title">Commentaires</h5>
+        <CommentList v-bind:comments="this.eventDetail ? this.eventDetail.comments : []" @callbackDeleteComment="onDeleteComment"/>
       </div>
     </div>
   </div>
@@ -24,6 +24,7 @@
 import EventList from './event-list'
 import EventDetail from './event-detail'
 import CommentList from './comment-list'
+import dataServiceWorker from '../service/data-service-worker'
 
 export default {
   components: {EventList, EventDetail, CommentList},
@@ -34,15 +35,20 @@ export default {
     }
   },
   methods: {
-    handleEvent (targetEvent) {
+    onSelectEventItem (targetEvent) {
       this.eventDetail = targetEvent
+      !this.eventDetail.comments && this.$set(this.eventDetail, 'comments', dataServiceWorker.getEventComments(targetEvent.id))
     },
-    handleChangeEvent (updatedEvent) {
+    onUpdateEvent (updatedEvent) {
       this.$set(this.eventDetail, updatedEvent.key, updatedEvent.value)
     },
-    handleDeleteWitness (witness) {
+    onDeleteWitness (witness) {
       let updatedSet = this.eventDetail.Témoins.filter((x) => x !== witness)
       this.$set(this.eventDetail, 'Témoins', updatedSet)
+    },
+    onDeleteComment (comment) {
+      let updatedSet = this.eventDetail.comments.filter((x) => x !== comment)
+      this.$set(this.eventDetail, 'comments', updatedSet)
     }
   }
 }

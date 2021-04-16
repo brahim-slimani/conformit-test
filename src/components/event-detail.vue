@@ -115,13 +115,13 @@ export default {
     }
   },
   methods: {
-    onDeleteWitness (item) {
-      this.$emit('callbackDeleteWitness', item)
-    },
     onUpdateEventProperty (e, property) {
       Promise.resolve(this.eventObject[property] = e.target.value).then(() => {
-        this.$emit('callbackChangeEvent', {key: property, value: e.target.value})
+        this.$emit('callbackUpdateEvent', {key: property, value: e.target.value})
       })
+    },
+    onDeleteWitness (item) {
+      this.$emit('callbackDeleteWitness', item)
     },
     getTime (datetime) {
       return Utils.getTimeFromDateTime(datetime)
