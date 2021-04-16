@@ -17,6 +17,7 @@
         type="text"
         placeholder="Titre d'accident"
         v-model="this.eventDetail.title"
+        v-on:change="onUpdateTitle"
       />
     </div>
     <div class="item-detail">
@@ -36,8 +37,9 @@
         <input
           id="date"
           type="date"
+          class="form-control"
           placeholder="date"
-          v-modal="this.eventDetail.creationDate"
+          v-bind:value="getDate(this.eventDetail.creationDate)"
         />
       </div>
       <div>
@@ -45,8 +47,9 @@
         <input
           id="houre"
           type="time"
+          class="form-control"
           placeholder="heure"
-          v-model="this.eventDetail.creationDate"
+          v-bind:value="getTime(this.eventDetail.creationDate)"
         />
       </div>
     </div>
@@ -88,19 +91,27 @@
 
 <script>
 
-import dataserviceworker from '../service/data-service-worker'
+import dataServiceWorker from '../service/data-service-worker'
+import Utils from '../helper'
 
 export default {
   name: 'EventDetail',
   data () {
     return {
-      statusOptions: dataserviceworker.getEventStatusValues(),
-      employeesOptions: dataserviceworker.getEmployees()
+      statusOptions: dataServiceWorker.getEventStatusValues(),
+      employeesOptions: dataServiceWorker.getEmployees()
     }
   },
   methods: {
     onDeleteWitness (item) {
-      alert(`${item} to be deleted`)
+    },
+    onUpdateTitle () {
+    },
+    getTime (datetime) {
+      return Utils.getTimeFromDateTime(datetime)
+    },
+    getDate (datetime) {
+      return Utils.getDateFromDateTime(datetime)
     }
   },
   props: {

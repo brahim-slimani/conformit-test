@@ -29,5 +29,10 @@ class DataServiceWorker {
         return GetEventComments(index);
     } 
 
+    updateComments = () => {
+        console.log("===> ")
+        this.getComments = [];
+    }
+
 
 } export default new DataServiceWorker()

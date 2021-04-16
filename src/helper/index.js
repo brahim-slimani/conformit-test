@@ -5,14 +5,12 @@ class Utils {
 
     //GET DATE FROM DATETIME
     getDateFromDateTime = (datetime) => {
-        let date = new Date(datetime);
-        return date;
+        return datetime.slice(0, 10);
     }
 
     //GET TIME FROM DATETIME
-    getDateFromDateTime = (datetime) => {
-        let date = new Date(datetime);
-        return date.getTime();
+    getTimeFromDateTime = (datetime) => {
+        return datetime.slice(11, datetime.length - 1);
     }
 }
 export default new Utils();
