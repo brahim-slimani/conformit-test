@@ -37,7 +37,7 @@
           id="date"
           type="date"
           placeholder="date"
-          v-model="this.eventDetail.creationDate"
+          v-modal="this.eventDetail.creationDate"
         />
       </div>
       <div>
@@ -76,7 +76,12 @@
     </div>
     <div class="item-detail">
       <div class="label">Témoins</div>
-      <div class="witness-container"></div>
+      <div class="witness-container">
+        <div v-for="item in this.eventDetail.Témoins" :key="item" class="witness-item">
+          <span class="witness-text">{{ item }}</span>
+          <i class="bi bi-x delete-action" @click="onDeleteWitness(item)"/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -94,6 +99,9 @@ export default {
     }
   },
   methods: {
+    onDeleteWitness (item) {
+      alert(`${item} to be deleted`)
+    }
   },
   props: {
     eventDetail: Object

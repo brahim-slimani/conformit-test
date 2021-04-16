@@ -24,6 +24,7 @@ class DataServiceWorker {
         return [...new Set(statusList)];
     }
 
+    //GET THE EVENT COMMENTS
     getEventComments = (index) => {
         return GetEventComments(index);
     } 

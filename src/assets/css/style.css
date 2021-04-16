@@ -81,6 +81,24 @@
   padding: 10px;
 }
 
+.witness-container .witness-item {
+  background-color: rgb(157,213,196);
+  width: fit-content;
+  padding: 2px 5px;
+  border-radius: 3px;
+  display: inline;
+  margin: 5px
+}
+
+.witness-container .witness-item .witness-text {
+  margin-right: 15px;
+}
+
+.witness-container .witness-item .delete-action {
+  cursor: pointer;
+  font-size: 18px;
+}
+
 /***************************** COMMENT LIST SECTION ******************************/
 
 .comment-list-container {
