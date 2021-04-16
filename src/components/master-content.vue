@@ -6,7 +6,10 @@
         <EventList @callback="handleEvent" />
       </div>
        <div class="detail-section">
-        <EventDetail v-bind:eventDetail="this.eventDetail" />
+        <EventDetail
+          v-bind:eventDetail="this.eventDetail"
+          @callbackChangeEvent="handleChangeEvent"
+          @callbackDeleteWitness="handleDeleteWitness"/>
       </div>
        <div class="comments-section">
          <h5 class="comment-title">Commentaires</h5>
@@ -31,8 +34,15 @@ export default {
     }
   },
   methods: {
-    handleEvent (target) {
-      this.eventDetail = target
+    handleEvent (targetEvent) {
+      this.eventDetail = targetEvent
+    },
+    handleChangeEvent (updatedEvent) {
+      this.$set(this.eventDetail, updatedEvent.key, updatedEvent.value)
+    },
+    handleDeleteWitness (witness) {
+      let updatedSet = this.eventDetail.Témoins.filter((x) => x !== witness)
+      this.$set(this.eventDetail, 'Témoins', updatedSet)
     }
   }
 }

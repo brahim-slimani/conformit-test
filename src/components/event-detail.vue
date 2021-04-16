@@ -2,11 +2,11 @@
   <div class="event-detail-container">
     <div class="header-detail">
       <h3>{{ this.eventDetail.title }}</h3>
-      <span
-        >Créé le
+      <span>
+        Créé le
         {{ new Date(this.eventDetail.creationDate).toLocaleString() }} par
-        {{ this.eventDetail.createdBy }}</span
-      >
+        {{ this.eventDetail.createdBy }}
+      </span>
     </div>
     <!-- <br/> -->
     <div class="item-detail">
@@ -17,7 +17,7 @@
         type="text"
         placeholder="Titre d'accident"
         v-model="this.eventDetail.title"
-        v-on:change="onUpdateTitle"
+        v-on:input="onUpdateEventProperty($event, 'title')"
       />
     </div>
     <div class="item-detail">
@@ -29,6 +29,7 @@
         placeholder="Description"
         rows="4"
         v-model="this.eventDetail.description"
+        v-on:input="onUpdateEventProperty($event, 'description')"
       />
     </div>
     <div class="item-detail d-flex justify-content-between">
@@ -39,8 +40,7 @@
           type="date"
           class="form-control"
           placeholder="date"
-          v-bind:value="getDate(this.eventDetail.creationDate)"
-        />
+          v-bind:value="getDate(this.eventDetail.creationDate)"/>
       </div>
       <div>
         <div class="label">Heure</div>
@@ -59,9 +59,10 @@
         id="status"
         class="custom-input"
         aria-placeholder="Nom du statut"
-        v-model="this.eventDetail.statusName">
+        v-model="this.eventDetail.statusName"
+        v-on:input="onUpdateEventProperty($event, 'statusName')">
         <option v-for="item in this.statusOptions" :key="item">
-         {{ item }}
+          {{ item }}
         </option>
       </select>
     </div>
@@ -71,7 +72,8 @@
         id="employees"
         class="custom-input"
         aria-placeholder="Employé impliqué"
-        v-model="this.eventDetail.involvedEmployeeId">
+        v-model="this.eventDetail.involvedEmployeeId"
+        v-on:input="onUpdateEventProperty($event, 'involvedEmployeeId')">
         <option v-for="option in this.employeesOptions" :key="option.key" v-bind:value="option.key">
           {{ option.value }}
         </option>
@@ -82,7 +84,7 @@
       <div class="witness-container">
         <div v-for="item in this.eventDetail.Témoins" :key="item" class="witness-item">
           <span class="witness-text">{{ item }}</span>
-          <i class="bi bi-x delete-action" @click="onDeleteWitness(item)"/>
+          <i class="bi bi-x delete-action" @click="onDeleteWitness(item)" />
         </div>
       </div>
     </div>
@@ -99,13 +101,27 @@ export default {
   data () {
     return {
       statusOptions: dataServiceWorker.getEventStatusValues(),
-      employeesOptions: dataServiceWorker.getEmployees()
+      employeesOptions: dataServiceWorker.getEmployees(),
+      eventObject: {
+        id: null,
+        creationDate: null,
+        createdBy: null,
+        involvedEmployeeId: null,
+        title: null,
+        description: null,
+        statusName: null,
+        Témoins: []
+      }
     }
   },
   methods: {
     onDeleteWitness (item) {
+      this.$emit('callbackDeleteWitness', item)
     },
-    onUpdateTitle () {
+    onUpdateEventProperty (e, property) {
+      Promise.resolve(this.eventObject[property] = e.target.value).then(() => {
+        this.$emit('callbackChangeEvent', {key: property, value: e.target.value})
+      })
     },
     getTime (datetime) {
       return Utils.getTimeFromDateTime(datetime)
