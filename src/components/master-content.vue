@@ -57,7 +57,7 @@ export default {
     onDeleteComment (comment) {
       let updatedSet = this.eventDetail.comments.filter((x) => x.creationDate !== comment.creationDate)
       this.$set(this.eventDetail, 'comments', updatedSet)
-      this.childCommentsKey = new Date().getTime()
+      this.childCommentsKey = this.generateKey
     },
     // CALLBACK UPDATE COMMENT
     onUpdateComment (comment) {
@@ -66,12 +66,17 @@ export default {
         return item
       })
       this.$set(this.eventDetail, 'comments', updatedSet)
-      this.childCommentsKey = new Date().getTime()
+      this.childCommentsKey = this.generateKey
     },
     // CALLBACK APPEND COMMENT
     onAppendComment (comment) {
       this.eventDetail.comments.push(comment)
-      this.childCommentsKey = new Date().getTime()
+      this.childCommentsKey = this.generateKey
+    }
+  },
+  computed: {
+    generateKey: function () {
+      return `${this.childCommentsKey}${new Date().getTime()}`
     }
   }
 }
