@@ -1,6 +1,6 @@
 <template>
-  <div class="card m-3 comment-item">
-    <div class="card-body">
+  <div class="comment-item">
+    <div class="card-bod">
       <div class="header-actions">
         <i class="bi bi-pencil-fill comment-action edit-comment" title="Edit comment" @click="updateCommentAction(comment)"/>
         <i class="bi bi-trash-fill comment-action delete-comment" title="Delete comment" @click="deleteCommentAction(comment)"/>
@@ -12,7 +12,7 @@
           <p>{{ comment.content }}</p>
         </div>
       </div>
-      <small class="footer"> {{ new Date(comment.creationDate).toLocaleString() }} </small>
+      <small class="footer"> {{ resolveDateToLocalFrench(comment.creationDate) }} </small>
     </div>
   </div>
 </template>
@@ -37,6 +37,11 @@ export default {
   },
   props: {
     comment: Object
+  },
+  computed: {
+    resolveDateToLocalFrench () {
+      return date => new Date(date).toLocaleString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    }
   }
 }
 </script>

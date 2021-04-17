@@ -17,10 +17,17 @@
 
 .event-list-container .event-item {
   cursor: pointer;
+  margin: 15px;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  box-shadow: 1px 2px #c2c2c2;
+  border-radius: 3px;
 }
 
 .event-list-container .event-item:hover {
   border: 2px solid rgb(157, 213, 196);
+  box-shadow: none;
 }
 
 /* CUSTOM SCROLLBAR STYLE */
@@ -126,10 +133,17 @@
 
 .comment-item {
   text-align: initial;
+  background-color: white;
+  padding: 15px;
+  margin: 15px;
+  position: relative;
+  border: 1px solid black;
+  box-shadow: 1px 1px #c2c2c2;
+  border-radius: 3px;
 }
 
 .comment-item .content {
-  margin: 0 10px;
+  margin: 0 10px 10px;
 }
 
 .comment-item .footer {
@@ -178,4 +192,23 @@
   width: 100%;
   margin: 15px 0;
   padding: 5px;
+}
+
+/***************************** RESPONSIVE MEDIA QUERY ******************************/
+
+@media (max-width: 800px) { 
+  .content-body {
+    display: block;
+  }
+
+  .events-section, .detail-section, .comments-section {
+    width: 100%;
+  }
+
+  .comments-section .vm--modal {
+    width: 90% !important;
+    left: 5% !important;
+    right: 5% !important;
+  }
+
 }

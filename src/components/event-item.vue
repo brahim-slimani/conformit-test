@@ -1,8 +1,6 @@
 <template>
-  <div class="card m-3 event-item" @click="onClickEvent(eventObject)">
-    <div class="card-body shadow">
+  <div class="event-item" @click="onClickEvent(eventObject)">
       {{ this.eventObject.title }}
-    </div>
   </div>
 </template>
 
