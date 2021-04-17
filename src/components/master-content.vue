@@ -1,6 +1,6 @@
 <template>
-  <div id="content">
-    <div class="text-left m-2"><h2>Mes évènements</h2></div>
+  <div id="master-container">
+    <div class="content-title"><h2>Mes évènements</h2></div>
     <div class="content-body">
       <div class="events-section">
         <EventList @callbackSelectEvent="onSelectEventItem" />
@@ -57,7 +57,7 @@ export default {
     onDeleteComment (comment) {
       let updatedSet = this.eventDetail.comments.filter((x) => x.creationDate !== comment.creationDate)
       this.$set(this.eventDetail, 'comments', updatedSet)
-      this.childCommentsKey = comment
+      this.childCommentsKey = new Date().getTime()
     },
     // CALLBACK UPDATE COMMENT
     onUpdateComment (comment) {
@@ -66,12 +66,12 @@ export default {
         return item
       })
       this.$set(this.eventDetail, 'comments', updatedSet)
-      this.childCommentsKey = comment
+      this.childCommentsKey = new Date().getTime()
     },
     // CALLBACK APPEND COMMENT
     onAppendComment (comment) {
       this.eventDetail.comments.push(comment)
-      this.childCommentsKey = comment
+      this.childCommentsKey = new Date().getTime()
     }
   }
 }

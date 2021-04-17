@@ -53,6 +53,10 @@
   display: flex;
 }
 
+.content-title {
+  margin-left: 20px;
+}
+
 /***************************** EVENT DETAIL SECTION ******************************/
 
 .event-detail-container {
