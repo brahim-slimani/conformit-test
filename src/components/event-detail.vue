@@ -103,7 +103,7 @@
     </div>
     <div v-else class="event-detail-message">
       <h4>
-        Prière de séléctioner un évènement !
+        Prière de sélectionner un évènement !
       </h4>
     </div>
   </div>
