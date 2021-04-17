@@ -5,7 +5,7 @@
         <i class="bi bi-pencil-fill comment-action edit-comment" title="Edit comment" @click="updateCommentAction(comment)"/>
         <i class="bi bi-trash-fill comment-action delete-comment" title="Delete comment" @click="deleteCommentAction(comment)"/>
       </div>
-      <div class="d-flex">
+      <div class="comment-content">
         <img class="avatar" src="../assets/img/person-icon.png" />
         <div class="content">
           <strong>{{ comment.author }}</strong>
@@ -26,12 +26,11 @@ export default {
     }
   },
   methods: {
-    appendCommentAction () {
-      this.$emit('callbackAppendComment')
-    },
+    // ON DELETE ACTION
     deleteCommentAction (comment) {
       this.$emit('callbackDeleteComment', comment)
     },
+    // ON EDIT ACTION
     updateCommentAction (comment) {
       this.$emit('callbackEditComment', comment)
     }

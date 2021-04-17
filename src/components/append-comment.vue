@@ -19,8 +19,8 @@
         v-on:input="setComment"
       />
       <div class="modal-footer">
-        <button type="button" @click="cancelAction">Cancel</button>
-        <button type="button" @click="submitAction">Submit</button>
+        <button type="button" class="btn btn-secondary" @click="cancelAction">Cancel</button>
+        <button type="button" class="btn btn-success" @click="submitAction">Submit</button>
       </div>
     </div>
   </div>

@@ -1,16 +1,17 @@
 /* eslint-disable */
-import { comments, employees, events, getEvent, GetEventComments, } from '../../data.js';
+import { employees, events, GetEventComments, } from '../../data.js';
 
 class DataServiceWorker {
 
-    //GET COMMENTS
-    getComments = comments;
+    //GET EMPLOYEES WITH EMBEDED FIELDS
+    getEmployees = () => {
+        return employees.map((employee) => {
+            return { key: employee.id, value: `${employee.firstname} ${employee.lastname} ( ${employee.id} )` };
+        });
+    }
 
-    //GET EVENTS
-    // getEvents = events;
-
-    //GET EVENTS
-    getEvents = () => {
+     //GET EVENTS
+     getEvents = () => {
         let tempEvents =  events.map((item) => {
             return Object.defineProperty(item, 'comments', {
                 value: this.getEventComments(item.id),
@@ -18,13 +19,6 @@ class DataServiceWorker {
             });
         });
         return tempEvents;
-    }
-
-    //GET EMPLOYEES WITH EMBEDED FIELDS
-    getEmployees = () => {
-        return employees.map((employee) => {
-            return { key: employee.id, value: `${employee.firstname} ${employee.lastname} ( ${employee.id} )` };
-        });
     }
 
     //GET UNIQUE EVENT STATUS NAMES

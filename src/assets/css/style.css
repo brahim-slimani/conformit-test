@@ -99,6 +99,11 @@
   font-size: 18px;
 }
 
+.event-detail-message {
+  text-align: center;
+  margin: 100px 0;
+}
+
 /***************************** COMMENT LIST SECTION ******************************/
 
 .comment-list-container {
@@ -159,6 +164,10 @@
 
 .comment-item .header-actions .comment-action {
   cursor: pointer;
+}
+
+.comment-item .comment-content {
+  display: flex;
 }
 
 .edit-comment-content {

@@ -19,8 +19,8 @@
         v-on:input="onEditComment"
       />
       <div class="modal-footer">
-        <button type="button" @click="cancelUpdateAction">Cancel</button>
-        <button type="button" @click="submitUpdateAction">Submit</button>
+        <button type="button" class="btn btn-secondary" @click="cancelUpdateAction">Cancel</button>
+        <button type="button" class="btn btn-success" @click="submitUpdateAction">Submit</button>
       </div>
     </div>
   </div>
