@@ -13,7 +13,12 @@
       </div>
        <div class="comments-section">
         <h5 class="comment-title">Commentaires</h5>
-        <CommentList v-bind:comments="this.eventDetail ? this.eventDetail.comments : []" @callbackDeleteComment="onDeleteComment"/>
+        <CommentList
+          v-bind:comments="this.eventDetail ? this.eventDetail.comments : null"
+          @callbackAppendComment="onAppendComment"
+          @callbackDeleteComment="onDeleteComment"
+          @callbackUpdateComment="onUpdateComment"
+          :key="this.childCommentsKey" />
       </div>
     </div>
   </div>
@@ -24,20 +29,19 @@
 import EventList from './event-list'
 import EventDetail from './event-detail'
 import CommentList from './comment-list'
-import dataServiceWorker from '../service/data-service-worker'
 
 export default {
   components: {EventList, EventDetail, CommentList},
   name: 'MasterContent',
   data () {
     return {
-      eventDetail: null
+      eventDetail: null,
+      childCommentsKey: null
     }
   },
   methods: {
     onSelectEventItem (targetEvent) {
       this.eventDetail = targetEvent
-      !this.eventDetail.comments && this.$set(this.eventDetail, 'comments', dataServiceWorker.getEventComments(targetEvent.id))
     },
     onUpdateEvent (updatedEvent) {
       this.$set(this.eventDetail, updatedEvent.key, updatedEvent.value)
@@ -47,9 +51,24 @@ export default {
       this.$set(this.eventDetail, 'Témoins', updatedSet)
     },
     onDeleteComment (comment) {
-      let updatedSet = this.eventDetail.comments.filter((x) => x !== comment)
+      let updatedSet = this.eventDetail.comments.filter((x) => x.creationDate !== comment.creationDate)
       this.$set(this.eventDetail, 'comments', updatedSet)
+      this.childCommentsKey = comment
+    },
+    onUpdateComment (comment) {
+      let updatedSet = this.eventDetail.comments.map((item) => {
+        if (item.creationDate === comment.creationDate) item['content'] = comment.content
+        return item
+      })
+      this.$set(this.eventDetail, 'comments', updatedSet)
+      this.childCommentsKey = comment
+    },
+    onAppendComment (comment) {
+      this.eventDetail.comments.push(comment)
+      this.childCommentsKey = comment
     }
+  },
+  watch: {
   }
 }
 </script>

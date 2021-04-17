@@ -16,7 +16,7 @@ export default {
   name: 'EventList',
   data () {
     return {
-      events: dataServiceWorker.getEvents
+      events: dataServiceWorker.getEvents()
     }
   },
   methods: {

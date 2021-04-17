@@ -2,8 +2,8 @@
   <div class="card m-3 comment-item">
     <div class="card-body">
       <div class="header-actions">
-        <i class="bi bi-pencil-fill edit-action" />
-        <i class="bi bi-trash-fill delete-action" @click="deleteCommentAction(comment)"/>
+        <i class="bi bi-pencil-fill comment-action edit-comment" title="Edit comment" @click="updateCommentAction(comment)"/>
+        <i class="bi bi-trash-fill comment-action delete-comment" title="Delete comment" @click="deleteCommentAction(comment)"/>
       </div>
       <div class="d-flex">
         <img class="avatar" src="../assets/img/person-icon.png" />
@@ -26,8 +26,14 @@ export default {
     }
   },
   methods: {
+    appendCommentAction () {
+      this.$emit('callbackAppendComment')
+    },
     deleteCommentAction (comment) {
       this.$emit('callbackDeleteComment', comment)
+    },
+    updateCommentAction (comment) {
+      this.$emit('callbackEditComment', comment)
     }
   },
   props: {

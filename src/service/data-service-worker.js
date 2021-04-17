@@ -7,7 +7,18 @@ class DataServiceWorker {
     getComments = comments;
 
     //GET EVENTS
-    getEvents = events;
+    // getEvents = events;
+
+    //GET EVENTS
+    getEvents = () => {
+        let tempEvents =  events.map((item) => {
+            return Object.defineProperty(item, 'comments', {
+                value: this.getEventComments(item.id),
+                writable: true
+            });
+        });
+        return tempEvents;
+    }
 
     //GET EMPLOYEES WITH EMBEDED FIELDS
     getEmployees = () => {
@@ -27,12 +38,6 @@ class DataServiceWorker {
     //GET THE EVENT COMMENTS
     getEventComments = (index) => {
         return GetEventComments(index);
-    } 
-
-    updateComments = () => {
-        console.log("===> ")
-        this.getComments = [];
     }
-
 
 } export default new DataServiceWorker()

@@ -108,6 +108,7 @@
   height: 120vh;
   overflow: auto;
   border: 1px solid black;
+  text-align: center;
 }
 
 .comments-section {
@@ -148,12 +149,24 @@
   right: 0;
 }
 
-.comment-item .header-actions .edit-action {
+.comment-item .header-actions .edit-comment, .add-comment {
   color: rgb(157, 213, 196);
+}
+
+.comment-item .header-actions .delete-comment {
+  color: rgb(214, 113, 113);
+}
+
+.comment-item .header-actions .comment-action {
   cursor: pointer;
 }
 
-.comment-item .header-actions .delete-action {
-  color: rgb(214, 113, 113);
-  cursor: pointer;
+.edit-comment-content {
+  text-align: center;
+}
+
+.edit-comment-content .comment-text {
+  width: 100%;
+  margin: 15px 0;
+  padding: 5px;
 }
