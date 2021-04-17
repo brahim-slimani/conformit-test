@@ -14,7 +14,7 @@ class DataServiceWorker {
      getEvents = () => {
         let tempEvents =  events.map((item) => {
             return Object.defineProperty(item, 'comments', {
-                value: this.getEventComments(item.id),
+                value: GetEventComments(item.id),
                 writable: true
             });
         });
@@ -27,11 +27,6 @@ class DataServiceWorker {
             return event.statusName;
         });
         return [...new Set(statusList)];
-    }
-
-    //GET THE EVENT COMMENTS
-    getEventComments = (index) => {
-        return GetEventComments(index);
     }
 
 } export default new DataServiceWorker()
